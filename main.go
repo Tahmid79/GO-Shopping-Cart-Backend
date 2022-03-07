@@ -9,9 +9,10 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 	configs.ConnectDB()
 	AddRoutes(router)
-	router.Run("127.0.0.1:3000")
+	router.Run("localhost:3000")
 }
 
 func AddRoutes(router *gin.Engine) {
