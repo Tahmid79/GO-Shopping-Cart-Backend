@@ -10,7 +10,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var DBUri string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+var DBUri string = "mongodb+srv://tahmid:1234@cluster0.deun6.mongodb.net/test"
+
+// var DBUri string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 var DBName string = "test"
 var DB *mongo.Client = ConnectDB()
 var timeout time.Duration = 10 * time.Second
