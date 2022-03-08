@@ -4,17 +4,16 @@ import (
 	"goecom1/configs"
 	"goecom1/models/product"
 
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	router := gin.Default()
-	router.SetTrustedProxies(nil)
+	router := echo.New()
 	configs.ConnectDB()
 	AddRoutes(router)
-	router.Run("localhost:3000")
+	router.Logger.Fatal(router.Start("localhost:3000"))
 }
 
-func AddRoutes(router *gin.Engine) {
+func AddRoutes(router *echo.Echo) {
 	product.AddProductRoutes(router)
 }

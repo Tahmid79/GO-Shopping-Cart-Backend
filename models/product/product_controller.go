@@ -4,15 +4,15 @@ import (
 	"goecom1/configs"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var productCollection *mongo.Collection = configs.GetCollection("products")
 
-func GetAllProducts() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetAllProducts() echo.HandlerFunc {
+	return func(c echo.Context) error {
 
 		products := []Product{}
 
@@ -22,8 +22,7 @@ func GetAllProducts() gin.HandlerFunc {
 
 		if err != nil {
 			body := ProductResponse{Message: err.Error(), Data: nil}
-			c.JSON(http.StatusInternalServerError, body)
-			return
+			return c.JSON(http.StatusInternalServerError, body)
 		}
 
 		defer cursor.Close(ctx)
@@ -36,7 +35,6 @@ func GetAllProducts() gin.HandlerFunc {
 
 		response := ProductResponse{Message: "Product List", Data: products}
 
-		c.JSON(http.StatusOK, response)
-
+		return c.JSON(http.StatusOK, response)
 	}
 }

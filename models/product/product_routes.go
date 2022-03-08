@@ -1,7 +1,9 @@
 package product
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/labstack/echo/v4"
+)
 
-func AddProductRoutes(router *gin.Engine) {
+func AddProductRoutes(router *echo.Echo) {
 	router.GET("/products", GetAllProducts())
 }
