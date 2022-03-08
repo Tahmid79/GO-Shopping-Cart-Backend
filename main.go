@@ -22,7 +22,7 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
-	if err := router.Run("localhost:" + port); err != nil {
+	if err := router.Run(":" + port); err != nil {
 		log.Panicf("error: %s", err)
 	}
 }
