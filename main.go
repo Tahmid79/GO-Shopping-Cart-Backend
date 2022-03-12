@@ -1,7 +1,6 @@
 package main
 
 import (
-	"goecom1/configs"
 	"goecom1/models/product"
 	"log"
 	"os"
@@ -16,7 +15,6 @@ func main() {
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
 
-	configs.ConnectDB()
 	router.Use(CORSMiddleware())
 	AddRoutes(router)
 
